@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수</title>
+    <style>
+        .area{
+            width: 500px;
+            height: 100px;
+            background-color: lightgray;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>함수</h1>
+
+    <h3>* 선언적 함수</h3>
+    <pre>
+        function 함수명(매개변수, 매개변수, ...){
+
+            해당 함수 호출시 실행할 코드;
+            
+            return 결과값;
+        }
+
+        - 매개변수가 없는 경우 매개변수 생략 가능
+        - 반환할 결과값이 없는 경우 return 결과값 생략 가능.
+    </pre>
+
+    <script>
+        function test1(){
+            document.querySelector("#area1").innerHTML += "test() 함수 실행됨 <br>"
+        }
+
+        //btn.onclick = function(){alert(이벤트발생)}
+    </script>
+    <button onclick="test1();">실행확인</button>
+    <div id="area1" class="area"></div>
+
+    <br>
+
+    <h3> * 익명 함수</h3>
+    <pre>
+        function(매개변수,매개변수, ...){
+            소스코드; 
+        }
+
+        - 특정변수나 속성에 대입되는 함수 제시시 주로 사용됨
+        (주로 이벤트 핸들러 작성시 사용)
+    </pre>
+
+    <button id="btn2">실행확인</button>
+    <div id="area2" class="area"></div>
+
+    <script>
+        let btn2 = document.querySelector("#btn2");
+
+        btn2.onclick = function(){// 이벤트 속성에 대입되는 function == 이벤트 핸들러
+            document.querySelector("#area2").innerHTML += "클릭이벤트 발생!";
+        };// 보통 함수에는 ; 안붙이는데 익명 함수에는 붙이는것이 관례
+    </script>
+
+    <h2>함수의 매개변수</h2>
+
+    <button onclick="test3('안녕하세요~')">실행확인</button>
+    <button onclick="test3(10);">실행확인</button>
+    <button onclick="test3([1,2,3]);">실행확인</button>
+    <button onclick="test3(true);">실행확인</button>
+    <button onclick="test3(prompt('이름을 입력하세요'));">실행확인</button>
+    <button onclick="test3(10,'안녕하세요');">실행확인</button>
+    <!-- 매개변수가 더 많은 경우 초과 전달값은 무시됨-->
+    <button onclick="test3();">실행확인</button>
+    <!-- 매개변수가 더 적은 경우 undifiend로 뜸-->
+    <button onclick="test3(this)">실행확인</button>
+    <!-- this는 인라인 속성에 해당 태그 객체를 나타냄.-->
+
+    <div id="area3" class="area"></div>
+    <script>
+        function test3(value){ // 매개변수 제시시 자료형을 지정하지 않아도 됨.
+            document.querySelector("#area3").innerHTML = value;
+        }
+    </script>
+
+    <br>
+
+    <h3>* 매개변수 관련 arguments 배열</h3>
+
+    <p>
+        함수 호출시 전달되는 값은 내부적으로 arguments 배열에 담김<br>
+        * arguments : 모든 함수마다 내부적으로 하나씩 존재하는 배열 객체
+    </p>
+
+    <button onclick="test4(12, 5, 6, 99, 3953);">실행확인</button>
+    <div id="area4" class="area"></div>
+
+    <script>
+        function test4(){
+            //console.log(arguments);
+            //console.log(arguments[0]);
+
+            //arguments 배열의 모든 값을 더해서, div에 출력
+            // 총합 : xxx
+            // 평균 : xxx
+            // 랜덤값 : xxx (1~100)
+            let sum = 0;
+            for(let i=0; i<arguments.length; i++){
+                sum += arguments[i];
+            }
+            let area4 = document.querySelector("#area4");
+
+            area4.innerHTML += "총합 : "+sum+"<br>";
+            area4.innerHTML += "평균 :"+sum/arguments.length+"<br>";
+            area4.innerHTML += "랜덤값 : "+parseInt(Math.random() * 100 + 1);
+
+        }
+    </script>
+
+    <br>
+
+    <h3>* 매개변수 있는 함수에 this관련 전달하기</h3>
+
+    <button onclick="test5(this);">버튼1</button>
+    <button onclick="test5(this.innerHTML);">버튼2</button>
+    <!-- this.innerHTML넘길경우 시작태그와 종료태그 사이의 값이 전달됨.-->
+    <input type="button" onclick="test5(this.value);" value="button">
+
+    <button id="btn" onclick="test5(this.id);">버튼4</button>
+    <script>
+        function test5(a){
+            console.log(a);
+        }
+    </script>
+    <h2> 함수의 리턴</h2>
+
+    <h3>* 일반적인 값 리턴</h3>
+
+    <button onclick="test6();">실행확인</button>
+    <div id="area6" class="area"></div>
+
+    <script>
+        // 1~100 사이의 랜덤값 구해서 return 시켜주는 함수
+        function ran(){
+
+            let random = parseInt(Math.random() * 100+1);
+
+            return random;
+        }
+
+        function test6(){
+            document.querySelector("#area6").innerHTML = "랜덤값 : "+ran();
+        }
+    </script>
+
+    <br>
+
+    <h3>* 익명 함수를 리턴하는 함수</h3>
+
+    이름 : <input type="text" id="userName">
+    <button onclick="test7()();">실행확인</button>
+    
+    <script>
+        function test7(){
+
+            let myName = document.querySelector("#userName").value;
+
+            console.log(myName);
+            return function(){
+                alert(myName+"님 환영합니다!");
+            };// 익명함수 리턴 방법, 사용할려명 test7()();식으로 사용
+        }
+        test7; //함수가 이자리에 있음
+        test7(); //test7 함수를 실행
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텍스트관련스타일</title>
+    <style>
+        #co{
+            color : yellow;
+            color : #FFA7A7;
+            color : rgb(0, 255, 100);
+            color : rgba(0, 255, 100, 0.3); /* 마지막 매개변수는 투명도를 의미함*/
+            color : hsl(200, 50%, 50%); /*hue : 색상값(0~360) ,saturation : 채도(%), lightness 명암 :% */
+            color: hsla(200, 50%, 50%, 0.6);
+        }
+
+        #td1{text-decoration: underline;}
+        #td2{text-decoration: line-through;}
+        #td3{text-decoration: overline;}
+        #td4{text-decoration: none; color: black;}
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        #tt1{
+            text-transform: uppercase;
+        }
+        #tt2{
+            text-transform: lowercase;
+        }
+        #tt3{
+            text-transform: capitalize;
+        }
+
+        .shadow{
+            font-size: 50px;
+            font-weight: 900;
+        }
+        #ts1{
+            color: orange;
+            text-shadow : 5px 5px 5px yellow;
+        }
+        #ts2{
+            color: white;
+            text-shadow: 0px 0px 10px black;
+        }
+
+        #ts3{
+            text-shadow: 0px 0px 4px gray , 0px -5px 4px yellow , 0px -15px 14px orangered , 0px 0px 19px red;
+        }
+    </style>
+</head>
+<body>
+    <h1>텍스트 관련 스타일(text~)</h1>
+
+    <h3>color : 텍스트의 색상을 지정</h3>
+    <pre id="co">
+        선택자{
+            color : 색상명/16진수/rbg(x,x,x)/rgba(x,x,x,x)/..
+        }
+    </pre>
+
+    <h3>text-decoration : 텍스트에 줄을 긋거나 없앨때 사용</h3>
+
+    <pre>
+        선택자{
+            text-decoration : none/underline/overline/line-through;
+        }
+    </pre>
+
+    <ul>
+        <li id="td1">underline : 텍스트 영역 아래에 줄긋기</li>
+        <li id="td2">line-through : 텍스트 영역 중간에 줄긋기</li>
+        <li id="td3">overline : 텍스트 영역 위에 줄긋기</li>
+    </ul>
+
+    <a href="https://www.naver.com" id="td4">네이버로</a>
+
+    <hr>
+    <h3>text-transform : 영문텍스트의 대소문자 변환시 사용.</h3>
+    <pre>
+        선택자{
+            text-transform : uppercase/lowercase/captalize;
+        }
+    </pre>
+
+    <ul>
+        <li id="tt1">uppercase : 모든 영문자 다 대문자로</li>
+        <li id="tt2">lOweRcase : 다 ~소문자로</li>
+        <li id="tt3">captalize hi hey : 영문자의 첫 글자만 대문자로.</li>
+    </ul>
+
+    <hr>
+
+    <h3>text-align : 텍스트를 정렬할때 사용</h3>
+    <pre>
+        선택자{
+            text-align: left(기본값)/justify/right/center;
+        }
+    </pre>
+
+    <h4>양쪽정렬</h4>
+    <p style="text-align: justify;">
+        뭇 이상의 역사를 대한 듣는다. 사라지지 이상 피고 찾아 약동하다. 고행을 가는 하는 남는 그것은 이것은 그들의 위하여서, 아니한 사막이다. 노래하며 대고, 무엇이 인생을 몸이 목숨이 운다. 꾸며 하여도 넣는 아름답고 청춘의 그리하였는가? 새가 곧 곳이 찾아 이것이야말로 내는 천하를 우리 아름다우냐? 굳세게 가치를 평화스러운 구할 듣기만 이 피어나기 운다. 무한한 노년에게서 그러므로 싶이 이것이야말로 말이다. 피부가 이상의 꽃 생의 약동하다.
+    </p>
+
+    <h4>오른쪽 정렬</h4>
+    <p style="text-align: right;">
+        뭇 이상의 역사를 대한 듣는다. 사라지지 이상 피고 찾아 약동하다. 고행을 가는 하는 남는 그것은 이것은 그들의 위하여서, 아니한 사막이다. 노래하며 대고, 무엇이 인생을 몸이 목숨이 운다. 꾸며 하여도 넣는 아름답고 청춘의 그리하였는가? 새가 곧 곳이 찾아 이것이야말로 내는 천하를 우리 아름다우냐? 굳세게 가치를 평화스러운 구할 듣기만 이 피어나기 운다. 무한한 노년에게서 그러므로 싶이 이것이야말로 말이다. 피부가 이상의 꽃 생의 약동하다.
+    </p>
+
+    <h4>가운데 정렬</h4>
+    <p style="text-align: center;">
+        뭇 이상의 역사를 대한 듣는다. 사라지지 이상 피고 찾아 약동하다. 고행을 가는 하는 남는 그것은 이것은 그들의 위하여서, 아니한 사막이다. 노래하며 대고, 무엇이 인생을 몸이 목숨이 운다. 꾸며 하여도 넣는 아름답고 청춘의 그리하였는가? 새가 곧 곳이 찾아 이것이야말로 내는 천하를 우리 아름다우냐? 굳세게 가치를 평화스러운 구할 듣기만 이 피어나기 운다. 무한한 노년에게서 그러므로 싶이 이것이야말로 말이다. 피부가 이상의 꽃 생의 약동하다.
+    </p>
+
+    <hr>
+
+    <h3>text-shadow: 텍스트에 그림자 효과를 줄때 사용</h3>
+    <pre>
+        선택자{
+            text-shadow : 가로거리 새로거리 번짐정도 색상;
+        }
+        - 번짐정도 색상은 생략가능.
+        - 가로거리와 세로거리가 양수일경우 => 오른쪽 아래 그림자 생성
+        - 가로거리와 세로거리가 음수일 경우 => 왼쪽 위에 그림자 생성
+        - 번짐 정도가 0일 경우 그림자 색이 제일 진함.
+        - 색상은 기본값으로 글자색과 동일.
+    </pre>
+
+    <div>
+        <span class="shadow" id="ts1">HTML</span> <br><br><br>
+        <span class="shadow" id="ts2">HTML</span> <br><br><br>
+        <span class="shadow" id="ts3">HTML</span> <br><br><br>
+    </div>
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

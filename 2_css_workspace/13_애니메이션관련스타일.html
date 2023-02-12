@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니메이션 관련 스타일</title>
+    <style>
+        input:checked+.anitest{
+            width: 200px;
+            animation-name: ani;
+            animation-duration: 4s;
+            animation-direction: alternate;
+            animation-iteration-count : infinite;
+        }
+        input:checked+.anitest2{
+            animation: ani2 5s infinite alternate;
+        }
+        @keyframes ani {
+            from{
+                background-color: green;
+                border: 1px solid black;
+            }to{
+                background-color: yellowgreen;
+                border-radius: 50%;
+                transform: rotate(720deg);
+                border: 1px solid red;
+            }
+        }
+
+        @keyframes ani2{
+            0%{
+                background-color: green;
+                border: 3px solid black;
+            }
+            30%{
+                transform: translate(-100px, -100px);
+            }
+            50%{
+                background-color: pink;
+                transform: scale(1.2);
+                border: 5px solid yellow;
+            }
+            100%{
+                background-color: yellowgreen;
+                transform: rotate(45deg);
+                border: 1px solid red;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+        <h1>애니메이션 관련 스타일</h1>
+        <h2>애니메이션</h2>
+        <p>
+            속성을 점차적으로 변화시켜 움직이는 효과를 내는 기법.
+            트랜지션과 비교했을때 시작스타일과 끝 스타일을 부드럽게 이어
+            주는 기능을 제공한.<br>
+            애니메이션 중간에 원하는 위치에서 @keyframes을 이용하여 
+            중간스타일 지정 가능.
+        </p>
+
+        <br>
+        <br>
+        <br>
+
+        <h3>keyframes</h3>
+        <p>
+            애니메이션 시작지점과 끝지점의 스타일을 정하고,
+            key frames의 이름을 지정.
+            시작지점과 끝 지점 두개만 설정할 경우 from to로 설정.
+            중간에 작업이 더있으면 %로 구분하여 설정.
+        </p>
+        <pre>
+            @keyframes 키프레임명{
+                석택자 {스타일;}
+            }
+        </pre>
+
+        <input type="checkbox">
+        <div class="anitest">기본 애니메이션 적용</div>
+
+        <br><br>
+        <input type="checkbox">
+        <div class="anitest2">기본 애니메이션 적용</div>
+
+        <!--
+            애니메이션 내가 원하는 형태로 만들기 어려움.
+            이미 만들어져 있는 자료들로 사용하도록 하자.
+            animate.css
+        -->
+        
+        
+</body>
+</html>

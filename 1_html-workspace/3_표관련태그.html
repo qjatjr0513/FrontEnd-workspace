@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>표 관련 태그</title>
+        <!-- CSS 영역 : STYLE 태그로 지정.-->
+        <style>
+            /* thead 태그 모두에 스타일 적용시킴. */
+            thead{
+                background-color: lightcoral;
+                color : mintcream;
+            }
+            /* #td ? ==> id = "td" */
+            #tb{
+                background-color: lightblue; 
+            }
+            tfoot{
+                background-color: darkgreen;
+                color: darkgray;
+            }
+        </style>
+    </head>
+    <body>
+        <!--
+            표 : 문서에서 다량의 데이터를 정리해서 표현하고자 할때 사용.
+                행과 열로 이루어져있다.
+
+            표 구성 태그 : <table>, <tr>, <th>, <td>
+            <table></table> : 기본적으로 표를 생성해주는 태그.
+            <tr></tr> : 표의 한 행을 나타내는 태그
+            <th>/<th> : 표의 제목셀을 나타내는 태그.
+            <td></td> : 표의 일반 셀을 나타내는 태그.
+        -->
+        <h1>기본표 만들기(4행 3열)<h1>
+
+        <table border ="1"><!--border 표의 테두리 두께.-->
+            <caption><b>웹 브라우저 종류</b></caption>
+            <!-- caption 태그 : 테이블에 제목추가(기본위치는 테이블 상단, 중앙에 위치)-->
+            <tr>
+                <th width="130" height="30">브라우저 명</th>
+                <th width="80">제조사</th>
+                <th width="200">홈페이지</th>
+            </tr>
+            <tr>
+                <td>
+                    Internet Explore
+                </td>
+                <td>
+                    MS
+                </td>
+                <td>
+                    http://www.microsoft.com
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Chrome
+                </td>
+                <td>
+                    Google
+                </td>
+                <td>
+                    http://www.google.com
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Firefox
+                </td>
+                <td>
+                    Mozilla
+                </td>
+                <td>
+                    http://www.Mozilla.org
+                </td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <h1>표의 행과 열을 합치는 속성.</h1>
+        <!--
+            셀(th, td) 태그와 속성을 이용해서 행 또는 열을 합칠수 있음.
+            colspan = "2" : 2개의 열을 합치기.
+            rowspan = "2" : 2개의 행을 합치기.
+        -->
+        <h3>이력서</h3>
+        <table border="1">
+            <tr>
+                <td rowspan="2" width="130" height="130">사진</td>
+                <td width="80">이름</td>
+                <td width="200"></td>
+            </tr>
+            <tr>
+                <td>연락처</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td width="70" height="50">주소</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td height="200">자기소개</td>
+                <td colspan="3"></td>
+            </tr>
+        </table>
+
+        <hr>
+        <h2>테이블 내에 구조 나누기</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>나이</th>
+                    <th>주소</th>
+                </tr>
+            </thead>
+            <tbody id="tb">
+                <tr>
+                    <td>이범석</td>
+                    <td>25</td>
+                    <td>수원</td>
+                </tr>
+                <tr>
+                    <td>홍길동</td>
+                    <td>40</td>
+                    <td>부산</td>
+                </tr>
+                <tr>
+                    <td>민지</td>
+                    <td>19</td>
+                    <td>서울</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2">총 인원</th>
+                    <td>3명</td>
+                </tr>
+            </tfoot>
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    </body>
+</html>

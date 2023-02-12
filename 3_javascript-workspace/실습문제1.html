@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습문제1</title>
+    <style>
+        .area{
+            border: 1px solid red;
+            width: 500px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <fieldset>
+            <legend>취미</legend>
+
+            <input type="checkbox" id="hobbyAll" onclick="selectAll();">전체선택
+            <input type="checkbox" name="hobby" id="" value="종합" onclick = "singleCheck();">종합
+            <input type="checkbox" name="hobby" id="" value="소설" onclick = "singleCheck();">소설
+            <input type="checkbox" name="hobby" id="" value="시/에세이" onclick = "singleCheck();">시/에세이
+            <input type="checkbox" name="hobby" id="" value="경제/경영" onclick = "singleCheck();">경제/경영
+            <input type="checkbox" name="hobby" id="" value="자기계발"onclick = "singleCheck();">자기계발
+            <input type="checkbox" name="hobby" id="" value="아동" onclick = "singleCheck();">아동<br>
+            <input type="checkbox" name="hobby" id="" value="여행" onclick = "singleCheck();">여행
+            <input type="checkbox" name="hobby" id="" value="과학" onclick = "singleCheck();">과학
+            <input type="checkbox" name="hobby" id="" value="역사/문화" onclick = "singleCheck();">역사/문화
+            <input type="checkbox" name="hobby" id="" value="외국어" onclick = "singleCheck();">외국어
+            <input type="checkbox" name="hobby" id="" value="컴퓨터" onclick = "singleCheck();">컴퓨터
+            <input type="checkbox" name="hobby" id="" value="만화" onclick = "singleCheck();">만화
+        </fieldset>
+    </form>
+    <br>
+    
+    <button onclick="showCheckedHobby();">카테고리 선택</button>
+    <div id="area" class="area"></div>
+
+    <script>
+        /*
+            리팩토링 : 개발자가 소스코드를 효율적으로 관리하기 위해, 작업을 완료하고
+            난 후 다듬는 행위.
+        */
+        const HOBBYALL = document.querySelector("#hobbyAll");
+        const hobbys = document.querySelectorAll("[name='hobby']");
+        function selectAll()  {
+
+            for(let i = 0; i<hobbys.length; i++){
+                hobbys[i].checked = HOBBYALL.checked;
+            }
+        }
+
+        function singleCheck(){
+            let total = hobbys.length;//12
+            let checkedHobbys = document.querySelectorAll("[name='hobby']:checked").length;//값이 고정적이지 않기 때문에 전역변수로 만들 수 없음
+
+            if(total == checkedHobbys){
+                HOBBYALL.checked = true;
+            }else{
+                HOBBYALL.checked = false;
+            }
+        }
+
+        function showCheckedHobby(){
+            let area = document.getElementById("area");
+            let hobbys = document.querySelectorAll("[name='hobby']:checked");
+            area.innerHTML = "";
+
+            for(let i = 0; i<hobbys.length; i++){
+                area.innerHTML += hobbys[i].value+" " ;
+            }
+        }
+    </script>
+</body>
+</html>

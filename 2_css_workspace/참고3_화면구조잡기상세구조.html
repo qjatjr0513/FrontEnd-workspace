@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화면구조잡기상세구조</title>
+    <style>
+        div{
+            box-sizing: border-box;
+            border: 1px solid red;
+        }
+        #wrap{
+            height: 1000px;
+            width: 800px;
+            margin: auto;
+        }
+        .header, .footer{
+            height: 20%;
+        }
+        .navigator{
+            height: 5%;
+        }
+        .content{
+            height: 55%;
+        }
+        .header>div, .content>div{
+            height: 100%;
+            float: left;
+        }
+        .header1{
+            width: 20%;
+        }
+        .header2{
+            width: 80%;
+        }
+        .content1{
+            width: 15%;
+        }
+        .content2{
+            width: 65%;
+        }
+        .content3{
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="header">
+            <div class="header1"></div>
+            <div class="header2"></div>
+        </div>
+        <div class="navigator"></div>
+        <div class="content">
+            <div class="content1"></div>
+            <div class="content2"></div>
+            <div class="content3"></div>
+        </div>
+        <div class="footer"></div>
+        
+        <!--
+            1. header영역
+            ++ 네비게이션 영역
+            2. content영역
+            3. footer영역
+        -->
+    </div>
+</body>
+</html>

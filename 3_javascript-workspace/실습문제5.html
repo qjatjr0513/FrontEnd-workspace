@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습문제5</title>
+</head>
+<body>
+    <p>
+        실습문제1. 필드에 넣은 값을 아래에 출력
+        단, 초기 화면은 아래와 같이 만들어야 하며 구매 수량 같은 경우 최소 10, 최대 100,
+        각 개수는 10씩 커지도록 하며 납품 등급은 최소 1, 최대 9로 2씩 커지게 함.
+    </p>
+    <h1>Practice4</h1>
+    <form>
+        <fieldset style="width: 600px;">
+            <legend>구매정보</legend>
+            <ul>
+                <li>구매자 : 
+                    <input type="text"  id="buyer" placeholder="구매자의 이름을 입력하세요">
+                </li>
+                <li>상품명 : 
+                    <input type="text" id="product" placeholder="구매 상품 명을 입력하세요">
+                </li>
+                <li>가격 : 
+                    <input type="number" id="price" placeholder="구매 가격을 입력하세요">
+                </li>
+                <li>구매 수량 : 
+                    <input type="number" id="stock" min="10" max="100" step="10" placeholder="최소10.">
+                </li>
+                <li>납품 등급 : 
+                    <input type="range" id="grade" min="1" max="9" step="2" value="1">
+                </li>
+                <li>기타사항 : 
+                    <textarea name="" id="etc">
+
+                    </textarea>
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+    <br>
+    <button onclick="printDiv();">입력값 출력하기</button><br><br>
+    <div id="area" style="border: 1px solid black; width: 500px; height: 300px;"></div>
+
+    <script>
+        function printDiv(){
+            let buyer = document.querySelector("#buyer");
+            let product = document.querySelector("#product");
+            let price = document.querySelector("#price");
+            let stock = document.querySelector("#stock");
+            let grade = document.querySelector("#grade");
+            let ecc = document.querySelector("#etc");
+            
+            let area = document.querySelector("#area");
+            
+            let result = "";
+            result = "구매자 명 : "+buyer.value+"<br>";
+            result += "상품명 : "+product.value+"<br>";
+            result += "가격 : "+price.value+"만원"+"<br>";
+            result += "구매수량 : "+stock.value+"개"+"<br>";
+            result += "납품등급 : "+grade.value+"등급"+"<br>";
+            result += "기타사항 : "+etc.value+"<br>";
+            area.innerHTML = result;
+        }
+    </script>
+
+    <p>
+        실습문제2. 라디오 버튼을 누르면 아래 그 버튼에 맞는 검색 창이 나오도록 함
+        날짜 검색 같은 경우 필드는 마우스로도 입력할 수 있는 필드를 사용해야 함
+        (검색을 눌렀을 때는 아무 반응도 일어나지 않음)
+    </p>
+
+    <h1>Practice5</h1>
+
+    <fieldset>
+    <legend>검색할 항목을 선택하세요.</legend>
+
+    <input type="radio" name="board" id="title"><label for = "title">제목</label>
+    <input type="radio" name="board" id="date"><label for = "date">날짜</label>
+    <input type="radio" name="board" id="regId"><label for = "regId">작성자</label>
+    </fieldset>
+
+    <div id = "title_div" style = "background-color: lightgray; margin: auto; padding: 5px; display: none;">
+        검색할 제목을 입력하세요 : <br>
+        <input type = "text"> <button>검색</button>
+    </div>
+
+    <div id = "date_div" style = "background-color: lightgray; margin: auto; padding: 5px; display: none;">
+        검색할 날짜를 선택하세요 : <br>
+        <input type = "date"> - <input type = "date"> <button>검색</button>
+    </div>
+
+    <div id = "regId_div" style = "background-color: lightgray; margin: auto; padding: 5px; display: none;">
+        검색할 작성자 아이디를 입력하세요 : <br>
+        <input type = "text"> <button>검색</button>
+    </div>
+
+
+    <script>
+        let radios = document.querySelectorAll("[name=board]");
+        let divs = document.querySelectorAll("[id$='_div']");
+        for(let i=0; i<radios.length; i++){
+            radios[i].addEventListener("change",function(){
+                for(let j=0;j<divs.length;j++){
+                    divs[j].style.display = "none";
+                }
+                document.querySelector("#"+this.id+"_div").style.display="block";
+
+            });
+        }
+    </script>
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열</title>
+    <style>
+        .area{
+            width: 300px;
+            border: 1px solid red;
+        }
+        .small{
+            height: 150px;
+        }
+        .big{
+            height: 300px;
+        }
+    </style>
+    <script>
+        var d = document;
+    </script>
+</head>
+<body>
+    <h4>
+        7_1) slice(시작, 끝) : 배열안의 요소들을 추출만 해주는 메서드<br>
+        7_2) splice(시작, 제거수, 추가값) : 배열의 요소를 추출해서 제거 및 추가, 추가값은 생략가능
+    </h4>
+    <div id="area8" class="area small"></div>
+    <button onclick="sliceTest();">확인하기</button>
+
+    <script>
+        function sliceTest(){
+            let area8 = d.querySelector("#area8");
+
+            let arr =["자바","오라클", "html","css","javascript"];
+
+            area8.innerHTML += "arr : "+arr+"<br>";
+
+            //slice(시작인덱스, 끝인덱스) => 끝인덱스는 포함되지않아요.
+            area8.innerHTML += "slice 결과 : "+arr.slice(2,4)+"<br>";
+            area8.innerHTML += "원본 arr : "+arr+"<br>";
+
+            //splice(시작인덱스, 제거할 요소 수, 추가할 요소)
+            area8.innerHTML += "splice 결과 : "+arr.splice(2,2,"server")+"<br>";
+            area8.innerHTML += "원본 arr : "+arr+"<br>";
+        }
+    </script>
+
+    <h4>8) join([구분자]) / toString() :
+        배열에 담긴 값들을 하나의 "문자열"로 합쳐서 반환
+    </h4>
+    <div id="area9" class="area small"></div>
+    <button onclick="toStringTest();">확인하기</button>
+
+    <script>
+        function toStringTest(){
+            let area9 = d.querySelector("#area9");
+
+            let arr = ["나는","오늘부터","다이어트를","합니다!"];
+
+            area9.innerHTML += "arr : "+arr/*.toString()*/+"<br>";
+            // 배열 객체를 HTML요소에 출력할경우 내부적으로 toString() 메서드 호출됨.
+
+            area9.innerHTML += "join : "+arr.join()+"<br>";
+            // join은 기본적으로 ,를 통해 하나의 문장열로 합침.
+            // join메소드 호출시 구분자 추가해주면 구분자로 합침.
+
+            area9.innerHTML += "구분자가 있는 join : "+arr.join(" ")+"<br>";
+        }
+    </script>
+
+    <hr>
+
+    <h4>9) 배열의 반복문(forEach)</h4>
+    <button onclick="forEachTest();">확인하기</button>
+    <script>
+        function forEachTest(){
+            let arr =[1,2,3,4,5];
+
+            //forEach 문법 기본형태
+            arr.forEach(function(item, index, array){
+                console.log(`${item}은 ${array}의 ${index}에 위치해 있습니다.`);
+            })
+            
+            arr.forEach(
+                alert)
+                ; // alert("출력할 문구")
+            // function alert(content){
+                    //화면에 출력
+                //}
+            
+        }
+    </script>
+
+    <h4>10) 배열 탐색(find, filter)</h4>
+    <p>
+        객체로 이루어진 배열에서 내가 원하는 값을 찾을때 주로 사용.
+    </p>
+
+    <button onclick="findAndFilterTest();">확인하기</button>
+    <script>
+        function findAndFilterTest(){
+            let objArr = [
+                {id:"qjatjr",name:"범석"},
+                {id:"dlqjatjr1",name:"범석2"},
+                {id:"dlqja3",name:"범석3"},
+                {id:"dlqjatjr4",name:"범석4"}
+            ];
+            // find
+            // 내가 원하는 첫번째 요소를 찾으면 그 요소 반환후,
+            // 반복문 종료(찾는값이 없다면 undifiend반환)
+            let boolean = objArr.find(
+                function(item, index,array){
+                    if(item.id == "dlqjatjr2"){
+                        return true;
+                    }
+                }
+            )
+            let boolean2 = objArr.find(e => e.id == "dlqjatjr2");
+            console.log(boolean);
+            console.log(boolean2)
+
+            //filter
+            // 조건을 충족하는 요소가 있으면 해당요소를 순차적으로반환.
+            // 하나도 없으면 빈배열[] 반환.
+
+            let filteredArray = objArr.filter(
+                function(item,index,array){
+                    //현재요소(item)에 프로퍼티중 key값이 
+                    //id인 녀석의 value중 'dlqjatjr'을 포함하고 있다면 true를 반환
+                    if(item.id.includes('dlqjatjr')){
+                        return true;
+                    }
+                }
+            )
+            console.log(filteredArray);
+
+            console.log(objArr.filter(item => item.id.includes('qjatjr')));
+        }
+    </script>
+
+    <h4>11) 배열 변형(map)</h4>
+    <p>
+        현재 배열을 바탕으로 각 요송 함수를 호출하여 결과값을 반환
+    </p>
+
+    <button onclick="mapTest();">확인하기</button>
+
+    <script>
+        function mapTest(){
+            let arr = [1,2,3,4,5];
+
+            let result = arr.map(
+                function(item,index,array){
+                    // array 요소 대신 새로운 값을 반환 가능하다.
+                    return item*index;
+                    // return 시킨값이 배열에 차곡차곡 쌓임.
+                    
+                    // 1*0 = 0
+                    // 2*1 = 2
+                    // 3*2 = 6
+                    // 4*3 = 12
+                    // 5*4 = 20
+                }
+            )
+            console.log(result);
+        }
+    </script>
+
+    <h4>12) reduce</h4>
+
+    <p>
+        map과 비슷하게 배열을 돌면서 새로운 형태의 배열을 돌려줌
+        but 사용법이 좀더 복잡합니다.
+    </p>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>종합응용예시</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    
+    <style>
+        tbody>tr:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>종합 응용 예시</h1>
+
+    <h2>게시판 리스트</h2>
+    <br> 
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>글번호</td>
+                <td>제목</td>
+                <td>작성자</td>
+                <td>조회수</td>
+                <td>작성일</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>3</td>
+                <td>세번째글 제목</td>
+                <td>user01</td>
+                <td>25</td>
+                <td>2022-09-30</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>두번째글 제목</td>
+                <td>user02</td>
+                <td>11</td>
+                <td>2022-08-20</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>첫번째 글제목</td>
+                <td>user01</td>
+                <td>6</td>
+                <td>2022-07-19</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br><br>
+    선택된 계시글 정보 : 
+    <label id="l1">글번호</label> /
+    <label id="l2">제목</label> /
+    <label id="l3">작성자</label> /
+    <label id="l4">조회수</label> /
+    <label id="l5">작성일</label>
+
+    <script>
+        $(function(){
+            $("tbody>tr").click(function(){// tbody태그안의 tr가 클릭된 경우 이벤트 발생
+                console.log($(this), $(this).children().eq(0).text());
+                // 현재 선택된 $(this)요소의 자식들중 0번째 요소 <td>글번호</td>의 텍스트 노드를 가져옴.
+
+                // 현재 클릭이벤트가 발생한 해당 tr요소의 자손들(td들)에 순차적으로 접근해서, 콘솔에 출력
+                // label태그 l1,l2,l3,l4,l5에 순차적으로 접근하여 올바른값을 덮어씌우기
+
+                $(this).children("td").each(function(index, item){
+                    console.log(index, item);
+                    $("#l"+(index+1)).text($(item).text());
+                    // index : 순차적으로 접근할때마다의 인덱스 수
+                    // item : 순차적으로 접근되는 요소객체(td)
+                    // item => $() 자바스크립트 객체를 jQuery 변환
+                });
+            });
+        })
+    </script>
+
+    <br><br>
+    <hr>
+
+    <!-- 부트스트랩 연습 -->
+    <button class="btn btn-primary">로그인</button>
+    <button class="btn btn-secondary">로그인</button>
+    <button class="btn btn-warning">로그인</button>
+    <button class="btn btn-primary btn-sm">로그인</button>
+    <button class="btn btn-outline-warning btn-sm">로그인</button>
+
+    <!-- 다른 태그에서도 버튼 모양 적용 가능-->
+    <div class="btn btn-outline-warning"></div>
+    <a class="btn btn-primary btn-sm">로그인</a>
+
+    <br><br>
+    <hr>
+    
+    <!-- 로그인 폼 예시-->
+    <!-- 입맛대로 수정 가능 -->
+    <form>
+        <img class="mb-4" src="https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    
+        <div class="form-floating">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+    
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-outline-warning" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">© 2017–2022</p>
+    </form>
+
+    <!-- 모달 : 부트스트랩에서 제공하는 팝업창 같은것, div 요소를 띄워준다. -->
+    <!-- data-toggle : 모달창을 띄우기 위한 필수 속성. -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target = "#myModal">
+        open modal
+    </button>
+
+    <!-- 모달 -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- modal header-->
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal header</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- modal body -->
+                <div class="modal-body">
+                    Modal body...
+                </div>
+
+                <!-- modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

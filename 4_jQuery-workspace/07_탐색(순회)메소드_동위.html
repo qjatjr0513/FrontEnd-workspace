@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>탐색(순회)메소드_동위</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <style>
+        .wrap, .wrap *{
+            border: 1px solid lightgray;
+            display: block;
+            margin: 15px;
+            padding: 5px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>탐색 순회 메소드</h1>
+
+    <h3>
+        * Sideways(동위) 메소드 : 같은 레벨에 있는 요소들을 선택할수 있는 메소드
+    </h3>
+
+    <div class="wrap">
+        <p>p</p>
+        <span>span</span>
+        <h2>h2</h2>
+        <h3>h3</h3>
+        <p>p</p>
+    </div>
+
+    <p>
+        <h4>- $("선택자").siblings()</h4>
+        선택된 요소와 같은 레벨에 있는 모든요소 선택
+
+        <h4>- $("선택자").siblings("선택자")</h4>
+        선택된 요소와 같은 레벨에 있는 요소들 중에서 제시한 값과 
+        일치하는 요소들만 선택.
+
+        <h4>- $("선택자").next()</h4>
+        선택된 요소와 같은 레벨에 있는 요소들 중에서 바로 다음 요소 
+        딱 하나만 선택.(+ 같은 녀석)
+
+        <h4>- $("선택자").nextAll()</h4>
+        선택자 요소와 같은 레벨에 있는 요소들중 바로 다음 요소들
+        전부다 선택.(~같은 녀석)
+
+        <h4>- $("선택자").nextUntil("선택자")</h4>
+        선택된 요소와 같은 레벨에 있는 다음 요소들 중에서 
+        제시한 값과 일치하는 요소들 까지만 선택.
+
+        <h4>- $("선택자").prev()</h4>
+        선택된 요소와 같은 레벨에 있는 요소들 중에서 바로 이전 요소
+        딱 하나만 선택.
+
+        <h4>- $("선택자").prevAll()</h4>
+        선택된 요소와 같은 레벨에 있는 요소들 중에서 바로 이전 요소들 
+        전부다~ 선택.
+
+        <h4>- $("선택자").prevUntil()</h4>
+        선택된 요소와 같은 레벨에 있는 이전 요소들 중에서 제시한 값과
+        일치하는 요소들 까지만 선택.
+    </p>
+
+    <script>
+        $(function(){
+            // 앞으로 css부여할 객체
+            let style1 = {color : "red", border : "2px solid red"};
+            let style2 = {color : "skyblue", border : "2px solid skyblue"};
+            let style3 = {color : "yellowgreen", "background-color" : "yellow"};
+            let style4 = {color : "pink", backgroundColor : "aqua"};
+
+            //siblings
+            $("h2").siblings().css(style1);
+            // h2를 기준으로 같은 레벨에있는 요소들 선택(본인 제외)
+            $("h2").siblings("p").css(style2);
+            // h2를 기준으로 같은 레벨에 있는 요소들 중 p만 선택.
+
+            // next()
+            $("h2").next().css(style3); 
+            // h2를 기준으로 바로 다음 요소 하나만 선택.
+            $("h2").nextAll().css(style4);
+            // h2를 기준으로 바로 다음 요소 전부다 선택함.
+            $("h2").nextUntil().css("font-size","3em");
+            // h2를 기준으로 뒤의 p이전 요소까지 폰트 크기를 3배로 늘림
+
+            //prev()
+            $("h2").prev().css("background-color", "pink");
+            // h2요소를 기준으로 앞의 하나만 선택함.
+            $("h2").prevAll().css(style4);
+            // h2요소 기준으로 앞의 요소들 전부다 선택.
+            $("h2").prevUntil("p").css("border","dotted");
+            // h2요소 기준으로 앞의 p이전 요소까지 테두리를 점선으로 바꿈
+        })
+    </script>
+</body>
+</html>

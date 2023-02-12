@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화면구조잡기 1</title>
+    <style>
+        div{
+            border: 1px solid red;
+            box-sizing: border-box;
+            /* 지금부터 지정하는 가로세로길이에 테두리를 포함시킴 */
+        }
+        /* 전체 감싸는 div */
+        .wrap{
+            width: 1000px;
+            height: 800px;
+            margin: auto;
+            /* 좌우로 자동으로 여백크기 조절해줌 */
+        }
+        /* 크게 3가지 영역이 있음 
+            header, content, footer
+        */
+        .wrap>div{
+            width: 100%;
+        }
+        .header, footer{
+            height: 20%;
+        }
+        .content{
+            height: 60%;
+        }
+        .content>div{
+            height: 100%;
+            float: left;
+            /*display: inline-block;*/
+        }
+        .content1{
+            width: 20%;
+        }
+        .content2{
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrap">
+        <div class="header"></div>
+        <div class="content">
+            <div class="content1"></div><div class="content2"></div>
+        </div>
+        <div class="footer"></div>
+    </div>
+
+</body>
+</html>

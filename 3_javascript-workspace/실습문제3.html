@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습문제3</title>
+    <style>
+        .area{
+            background-color: lightgray;
+            border: 1px solid black;
+            height: 200px;
+            width: 700px;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        실습문제1. -이 들어간 문자열을 자동으로 카멜표기법으로 변경하는 함수
+    </p>
+    <div id="area1" class="area"></div>
+    <button onclick="test1();">실습문제1</button>
+    <script>
+        function test1(){
+            //- 없애면서 앞글자만 대문자로 바꿔줌
+            //if문 이용 방법
+            let str= prompt("-이 포함된 영문자를 입력해주세요.");
+            let strArr = str.split("-"); //["list","style","type"];
+            let area1 = document.querySelector("#area1");
+
+            let camel = strArr.map(function(item,index){
+                if(index != 0){
+                    return item.charAt(0).toUpperCase() + item.slice(1);
+                }else{
+                    return item;
+                }
+            }).join(""); //listStyleType
+
+            //for문이용 방법
+            let result = strArr[0];
+            for(let i=1; i<strArr.length; i++){
+                result += strArr[i].charAt(0).toUpperCase()+strArr[i].slice(1);
+            }
+
+            area1.innerHTML +="str : "+str+"<br>";
+            area1.innerHTML += "camel : "+camel+"<br>";
+            area1.innerHTML += "result : "+result+"<br>"
+
+        }
+    </script>
+    <p>
+        실습문제 2. 객체배열을 나이를 기준으로 오름차순 정렬후 반환하는 함수를 작성하시오. 
+    </p>
+    <div id="area2" class="area"></div>
+    <button onclick="test2();">실습문제2</button>
+    <script>
+        function test2(){
+            let objArr = [
+                {name:"민경민",age: 25},
+                {name:"황정민",age: 52},
+                {name:"안유진",age: 22},
+                {name:"지아코",age: 28},
+                {name:"박해진",age: "40"}
+            ];
+            objArr.forEach(item => item.toString = function(){
+                return item.name +" : "+item.age;
+            });
+
+            let area2 = document.querySelector("#area2");
+            area2.innerHTML += "원본배열 : "+objArr+"<br>";
+            
+            objArr.sort(function(a,b){
+                return a.age-b.age
+            });
+            
+            area2.innerHTML += "정렬후 배열 : "+objArr+"<br>";
+        }
+    </script>
+    <p>
+        실습문제 3. 객체 배열의 요솟값중 name, firstName속성을 이용하여
+        성 + 이름의 문자열 배열을 반환하시오.
+    </p>
+    <div id="area3" class="area"></div>
+    <button onclick="test3();">실습문제3</button>
+    
+    <script>
+        function test3(){
+            let objArr = [
+                {name : "경민",firstName:"민", toString : () => "name : "+this.name+", firstName : "+this.firstName},
+                {name : "프로",firstName:"민", toString : () => "name : "+this.name+", firstName : "+this.firstName},
+                {name : "현정",firstName:"장", toString : () => "name : "+this.name+", firstName : "+this.firstName},
+                {name : "상엽",firstName:"이", toString : () => "name : "+this.name+", firstName : "+this.firstName},
+                {name : "도윤",firstName:"김", toString : () => "name : "+this.name+", firstName : "+this.firstName}
+            ];
+
+            let strArr = objArr.map(function(item){
+                return item.firstName + item.name;
+            });
+            // ["민경민","민프로","장현정"]
+            document.querySelector("#area3").innerHTML += "원본배열 : "+objArr+"<br>";
+            document.querySelector("#area3").innerHTML += strArr+"<br>";
+        }
+    </script>
+    <p>
+        실습문제4. filter 메소드를 이용해서 배열에서 a 값이상 b값 이하의 요소를 
+        내림차순으로 정렬후 출력해주는 메소드를 작성하시오.
+    </p>
+    <div id="area4" class="area"></div>
+    <button onclick="test4();">실습문제4</button>
+
+    <script>
+        function test4(){
+            let area4 = document.querySelector("#area4");
+            let start = +prompt("시작 값을 입력해주세요.");
+            let end = +prompt("마지막 값을 입력해주세요.");
+            let arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+
+            let filteredArray = arr.filter((item) => start <= item && item <=end ).sort((a,b) => b-a);
+
+            area4.innerHTML += "원본배열 : "+arr+"<br>";
+            area4.innerHTML += "정렬된 배열 : "+filteredArray+"<br>";
+        }
+    </script>
+    <p>
+        실습문제 5. 
+        splice메서드를 이용하여 배열에서 a값 이상 b값 이하의 범위에 속하지 않는 요소를 전부 제거하고,
+        해당 배열을 반환하는 메서드를 작성하시오.
+    </p>
+    <div id="area5" class="area"></div>
+    <button onclick="test5();">실습문제5</button>
+
+    <script>
+        function test5(){
+            let arr=[59,33,21,22,11,9,2,3,4,6,8,99,0,12,14,16,7];
+            let start = +prompt("시작값을 입력해주세요.");
+            let end = +prompt("종료값을 입력해주세요.");
+            let area5 = document.querySelector("#area5");
+            area5.innerHTML += "원본배열 : "+arr+"<br>";
+            
+            for(let i = 0; i<arr.length; i++){
+                if(!(start <= arr[i] && arr[i] <= end)){
+                    arr.splice(i , 1);
+                    i--;
+                }
+            }
+
+            area5.innerHTML += "요소 삭제 후 : "+arr+"<br>";
+        }
+    </script>
+
+    <p>
+        실습문제 6. 익명함수를 화살표 함수로 변경하시오.
+    </p>
+    <div id="area6" class="area" style="height: 500px;"></div>
+    <button onclick="test6();">실습문제6</button>
+
+    <script>
+        function test6(){
+            let area6 = document.querySelector("#area6");
+            let function1 = `let test = function(){
+                alert("민프로");
+            };`;
+            area6.innerHTML += "변경 전 : "+function1+"<br>";
+
+            area6.innerHTML += "변경 후 : "+`let test = () => alert("민프로");`+"<hr>";
+
+            let function2 = `let test = function(element){
+                if(element == "rudals"){
+                    return "밥은 잡솼서?";
+                }
+            };`;
+            area6.innerHTML += "변경 전 : "+function2+"<br>";
+            area6.innerHTML += "변경 후 : "+`let test = element => (element == "rudals") ? "밥은 밥솼서?" : undefined;`+"<hr>";
+            
+            let function3 = `[1,2,3,4,5].forEach(function(itme){
+                console.log(item);
+            });`;
+            area6.innerHTML += "변경 전 : "+function3+"<br>";
+            function3 = '[1,2,3,4,5].forEach(item => console.log(item));';
+            area6.innerHTML += "변경 후 : "+function3+"<hr>";
+
+            let function4 = `[1,2,3,4,5].filter(function(itme,index){
+                if(index != 0 && item%2 == 0){
+                    return true;
+                }
+            });`;
+
+            area6.innerHTML += "변경 전 : "+function4+"<br>";
+            function4 = `[1,2,3,4,5].filter((itme,index) => {
+                if(index != 0 && item%2 == 0){
+                    return true;
+                }
+            })`;
+            area6.innerHTML += "변경 후 : "+function4;
+
+        }
+    </script>
+</body>
+</html>

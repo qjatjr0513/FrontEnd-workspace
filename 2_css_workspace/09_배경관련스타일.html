@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배경 관련 스타일</title>
+    <style>
+        body{
+            background-color: skyblue;
+        }
+
+        #div-bg{
+            background-color: white;
+            border : 30px solid blue;
+            padding : 20px;
+            width: 50%; /* div의 content의 가로길이는 부모요소(body)의 50%로 지정 */
+            box-sizing: border-box;/*가로길이를 border까지 포함해서 지정하겠다.*/
+        }
+
+        .div-test{
+            margin: 30px;
+            border: 10px dashed;
+            padding: 20px;
+            background-color: yellow;
+        }
+        #div1{
+            background-clip: border-box;
+        }
+        #div2{
+            background-clip: padding-box;
+        }
+        #div3{
+            background-clip: content-box;
+        }
+        #bg-img{
+            border:1px solid black;
+            width: 70%;
+            height: 800px;
+            
+            background-image: url("resources/resources/image/bono.jpg");
+            background-repeat: repeat-y ; /* 사진들이 새로로만 연이어서 반복 */
+            background-size: contain; /* 가로 세로 상관없이 둘중 하나 가득찰 때까지 커짐.*/
+            background-position: 50% 50%; /* center center */
+            background-attachment: fixed; /* 스크롤이 이동해도 그자리 그대로 고정*/
+        }
+
+    </style>
+</head>
+<body>
+    <h1>배경 관련 스타일 (background~ )</h1>
+
+    <h3>background-color : 배경색을 저장하고자할때 사용.</h3>
+
+    <div id="div-bg">
+        뭇 이상의 역사를 대한 듣는다. 사라지지 이상 피고 찾아 약동하다. 고행을 가는 하는 남는 그것은 이것은 그들의 위하여서, 아니한 사막이다. 노래하며 대고, 무엇이 인생을 몸이 목숨이 운다. 꾸며 하여도 넣는 아름답고 청춘의 그리하였는가? 새가 곧 곳이 찾아 이것이야말로 내는 천하를 우리 아름다우냐? 굳세게 가치를 평화스러운 구할 듣기만 이 피어나기 운다. 무한한 노년에게서 그러므로 싶이 이것이야말로 말이다. 피부가 이상의 꽃 생의 약동하다.
+    </div>
+
+    <hr>
+
+    <h3>background-clip : 배경을 적용시키고자하는 범위를 지정할때 사용.</h3>
+    <pre>
+        선택자{
+            background-clip :  border-box(기본값)/padding-box/conetnet-box;
+        }
+    </pre>
+
+    <div class="div-test" id="div1"> 뭇 이상의 역사를 대한 듣는다. 사라지지 이상 피고 찾아 약동하다. 고행을 가는 하는 남는 그것은 이것은 그들의 위하여서, 아니한 사막이다. 노래하며 대고, 무엇이 인생을 몸이 목숨이 운다. 꾸며 하여도 넣는 아름답고 청춘의 그리하였는가? 새가 곧 곳이 찾아 이것이야말로 내는 천하를 우리 아름다우냐? 굳세게 가치를 평화스러운 구할 듣기만 이 피어나기 운다. 무한한 노년에게서 그러므로 싶이 이것이야말로 말이다. 피부가 이상의 꽃 생의 약동하다.</div>
+    <div class="div-test" id="div2"> 뭇 이상의 역사를 대한 듣는다. 사라지지 이상 피고 찾아 약동하다. 고행을 가는 하는 남는 그것은 이것은 그들의 위하여서, 아니한 사막이다. 노래하며 대고, 무엇이 인생을 몸이 목숨이 운다. 꾸며 하여도 넣는 아름답고 청춘의 그리하였는가? 새가 곧 곳이 찾아 이것이야말로 내는 천하를 우리 아름다우냐? 굳세게 가치를 평화스러운 구할 듣기만 이 피어나기 운다. 무한한 노년에게서 그러므로 싶이 이것이야말로 말이다. 피부가 이상의 꽃 생의 약동하다.</div>
+    <div class="div-test" id="div3"> 뭇 이상의 역사를 대한 듣는다. 사라지지 이상 피고 찾아 약동하다. 고행을 가는 하는 남는 그것은 이것은 그들의 위하여서, 아니한 사막이다. 노래하며 대고, 무엇이 인생을 몸이 목숨이 운다. 꾸며 하여도 넣는 아름답고 청춘의 그리하였는가? 새가 곧 곳이 찾아 이것이야말로 내는 천하를 우리 아름다우냐? 굳세게 가치를 평화스러운 구할 듣기만 이 피어나기 운다. 무한한 노년에게서 그러므로 싶이 이것이야말로 말이다. 피부가 이상의 꽃 생의 약동하다.</div>
+
+    <hr>
+    <h3>배경 이미지 테스트</h3>
+    <pre>
+        선택자 {
+            background-image : url(이미지경로);
+            background-repeat : repeat/repeat-x/repeat-y/no-repeat;
+            background-size : auto/contain/cover/px px/% %;
+            background-position : 좌/우/가운데중1 위/아래/가운데중1 /px px/% %;
+            background-attachment : scroll/fixed;
+        }
+    </pre>
+
+    <div id="bg-img"></div>
+</body>
+</html>

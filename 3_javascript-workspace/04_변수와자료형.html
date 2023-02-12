@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수와 자료형</title>
+</head>
+<body>
+    <h1>변수와 자료형</h1>
+    
+    <h3>* 변수 선언위치에 따른 전역변수/지역변수 </h3>
+    <pre>
+        &lt;script&gt; 
+            let 변수명; //전역변수(globall)
+            const 변수명; // 상수(값을 할당 바꿀수없음.)
+
+            var 변수명; // 전역변수(global) 과거에 자주사용되던 변수.
+
+            변수명; // 전역변수
+
+            function 함수명(){
+                let 변수명; // 지역변수(local)
+
+                변수명; //지역변수(local)
+            }
+
+            var변수는 문제점이 많아서 let, const 대체됨.
+        &lt;/script&gt;
+    </pre>
+
+    <script>
+        // var 키워드 문제점.
+        // 1) 영역문제.
+        if(true){
+            var varTest = "var";
+            let letTest = "let";
+        }
+
+        console.log(varTest); // 에러안남(함수내에 선언되면 함수전체,
+        //전역변수로 선언되면 전역에 남아있음.)
+        //console.log(letTest); // let는 변수 자바의 변수와 유사함.
+        // (블록단위 기준으로 변수를 사용.)
+
+        // 2) 중복문제 
+
+        var user;
+        var user; // 에러가 안나고 덮어씌우기됨.
+
+        let user2;
+        //let user2; 에러남.
+
+        // 전역변수들은 자동으로 window객체의 필드로 등록.
+        str = " 전역변수";
+        let str2 = "let 전역변수";
+
+        // window.onload == 해당 html문서가 다 로딩이 되고나서 
+        // 곧바로 실행할 함수를 지정
+        window.onload = function(){
+
+            let str = "지역변수"; // 전역변수명과 중복
+            let str3 = "새로운 지역변수";
+            str4 = "이건뭘까요?";
+
+            console.log("----------str----------");
+            console.log(str);
+            // 지역변수명과 전역변수명이 동일한 변수 호출시 지역변수 호출.
+            // 전역변수에 접근하고자 할때 => window 또는 this
+            console.log(window.str);
+            console.log(this.str);
+            
+            console.log("----------str2----------");
+            console.log(str2);// 전역변수
+            console.log(window.str2); // undefined(정의되지않음.)
+            console.log(this.str2); // undefined(정의되지않음.)
+
+            console.log("----------str3----------");
+            console.log(str3); // 지역변수
+            console.log(window.str3); // undefined(정의되지않음.)
+            console.log(this.str3); // undefined(정의되지않음.)
+
+            console.log("----------str4----------");
+            console.log(str4);
+            console.log(window.str4); // 전역변수!
+            console.log(this.str4);
+
+            // 지역변수 선언시 var, let, const키워드를 생략할경우,
+            // window 전역변수로 취급된다.
+
+            //let a = 0, b = 3, c = 6;
+            let a = 0; // 변수명 하나하나 작성하는걸 더 권장함.
+            let b = 3;
+            let c = 6;
+
+            var a2 = 1, b2 = 2, c2 = 4;
+
+            const CON = "33"; 
+            //CON = "55";
+        }
+    </script>
+
+    <hr>
+
+    <h3>* 자료형</h3>
+    <p>
+        변수 선언시 자료형을 별도로 지정하지 않음(자료형 개념이 없진 않음.)<br>
+        => 변수에 대입되는 값(리터럴)에 따라서 자료형이 자동으로 결정됨.
+    </p>
+
+    <h4>자바스크립트의 자료형</h4>
+
+    <ul>
+        <li>string (문자열)</li>
+        <li>number (숫자)</li>
+        <li>BingInt (엄청~큰 숫자)</li>
+        <li>boolean (논리값)</li>
+        <li>object (객체)</li>
+        <li>function (함수)</li>
+        <li>undefined (초기화가 안된 변수)</li>
+    </ul>
+
+    <script>
+        function typeTest(){
+            //let name = "홍길동"; //string
+            let name = '홍길동'; //string
+            let age = 20;
+            
+            let superInt = 11111111111111111111111111111111n;
+
+            let flag = true;
+
+            let user = {
+                name : '범석',
+                age : 25,
+                id : 'qjatjr',
+                123 : 'ㅎㅎ',
+                "qjatjr hi" : "33"
+            };
+
+            let hobby = ["영화","음악","낮잠"];
+
+            let testFn = function(){
+                console.log("test");
+            };
+
+            let noVal;
+
+            console.log(name);
+            console.log(age);
+            console.log(superInt);
+            console.log(flag);
+            console.log(user);
+            console.log(hobby);
+            console.log(testFn);
+            console.log(noVal);
+
+            // 자료형 확인시 사용되는 함수 : typeof(변수명);
+            let divEl = document.querySelector("#area");
+
+            divEl.innerHTML = name+"의 자료형 : " + typeof(name) + "<br>";
+            divEl.innerHTML += age+"의 자료형 : " + typeof(age) + "<br>";
+            divEl.innerHTML += superInt+"의 자료형 : " + typeof(superInt) + "<br>";
+            divEl.innerHTML += flag+"의 자료형 : " + typeof(flag) + "<br>";
+            divEl.innerHTML += user+"의 자료형 : " + typeof(user) + "<br>";
+            divEl.innerHTML += hobby+"의 자료형 : " + typeof(hobby) + "<br>";
+            divEl.innerHTML += testFn+"의 자료형 : " + typeof(testFn) + "<br>";
+            divEl.innerHTML += noVal+"의 자료형 : " + typeof(noVal) + "<br>";
+
+            // 객체 내부의 속성에 접근하는 방법 
+            divEl.innerHTML += user["123"]+"의 나이는 "+user["age"]+"살이며 아이디는 "+user.id+"입니다.";
+            divEl.innerHTML += user["qjatjr hi"];
+
+            //특이케이스
+            typeof(null); //object
+            // null은 별도의 자료형을 가지는 특수한 값임.
+            // 하위호환성을 위해 오류를 수정하지 않고 남겨둔 상황.
+
+            console.log("======================================");
+            if(123 == "123"){//?
+                if(typeof 123 == typeof "123"){
+                    console.log("123은 '123'과 같습니다.");
+                }
+            }else{
+                console.log("두 값은 다릅니다.");
+            }
+            if(true === true){// 각 값의 타입까지 체크.
+                console.log("true");
+            }
+        }
+    </script>
+
+    <button onclick="typeTest();">자료형 테스트</button>
+    <div id="area" style="border: 1px solid black;"></div>
+
+</body>
+</html>

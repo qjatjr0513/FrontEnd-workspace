@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content 영역 관련 메소드드</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Content 영역 (innerHTML, innerText) 관련 메소드</h1>
+
+    <h3> * html("문구") 메소드 : innerHTML속성과 관련된 메소드</h3>
+    <p>
+        선택된 요소의 Content영역(시작 태그와 종료 태그 사이)을 리턴해주거나 또는 변경해주는 메소드<br>
+        - $("선택자").html() : 선택된 요소의 content 영역의 값을 반환해줌( 이때, html태그까지 포함)<br>
+        - $("선택자").html("문구") : 선택된 요소의 content영역 값을 해당 문구로 변경해 줌 <br>
+                                    (전달하는 문구에 html태그가 있을경우 태그로서 해석해 줌)<br>
+    </p>
+    <h1 id="test1">
+        <a>네이버로</a>
+    </h1>
+
+    <h1 id="test2">
+
+    </h1>
+
+    <script>
+        $(function(){
+            // 자바스크립트 방식
+            let temp = document.getElementById("test1").innerHTML;
+            console.log(temp);
+
+            // jQuery 방식
+            let temp2 = $("#test1").html(); //html get 방식
+            console.log(temp2);
+
+            $("#test2").html(temp2); // id가 test2인 a태그 텍스트 출력 //html set방식
+            $("#test2").children().attr("href","https://www.naver.com");
+            //위에서 만든 태그에 href속성을 추가함.
+        });
+    </script>
+
+    <br><br>
+    
+    <div class="class1">test1</div>
+    <div class="class1">test1</div>
+    <div class="class1">test1</div>
+
+    <script>
+        $(function(){
+            $(".class1").html("<h1>안녕하세요</h1>");
+
+            // 각각 다른 내용으로 출력하고 싶은 경우
+            // 선택된 요소들에 순차적으로 접근할 때마다 해당 function실행
+            // 이때 함수 실행시 리턴된 값으로 문구 변경
+            // 콜백 함수 : 함수 실행 후 반환된 결과값을 가지고 반영
+
+            /*let count = 1;
+            $(".class1").html(function(){
+                return "<h1>안녕하세요"+count++ + "</h1>";
+            });*/
+            //$(".class1").html("<h1>안녕하세요1</h1>");
+            //$(".class1").html("<h1>안녕하세요2</h1>");
+            //$(".class1").html("<h1>안녕하세요3</h1>");
+
+            // 해당 function이 호출될때마다
+            // 첫번째 인자값으로는 순차적으로 접근하는 요소의 인덱스 수 전달
+            // 두번째 인자값으로는 순차적으로 접근하는 요소의 content영역값(innerhtml속성값) 전달
+
+            $(".class1").html(function(index, html){
+                return "<h1> 인덱스 : "+index+", content 내용 :"+html+"</h1>";
+            });
+        });
+    </script>
+
+    <h3>* text("문구") 메소드 : innerText속성과 관련된 메소드</h3>
+    <p>
+        선택된 요소의 content영역의 텍스트만 리턴해주거나 변경해주는 메소드<br>
+        - $("선택자").text() : 선택된 요소의 content영역을 반환해 줌(단, html 태그는 무시하고 텍스트만)<br>
+        - $("선택자").text("문구") : 선택자 요소의 content 내용을 전달값으로 변경해줌(단, 태그로 해석안됨)
+    </p>
+
+    <h1 id="test3">
+        <a>구글로</a>
+    </h1>
+
+    <h1 id="test4">
+
+    </h1>
+
+    <script>
+        $(function(){
+            let tmp = $("#test3").text();
+            console.log(tmp);
+            
+            $("#test4").text("<a>"+tmp+"</a>");
+        });
+    </script>
+
+    <br><br>
+
+    <div class="class2">test2</div>
+    <div class="class2">test2</div>
+    <div class="class2">test2</div>
+
+    <script>
+        $(function(){
+            $(".class2").text(function(index, text){
+                return "<h1>인덱스 : "+index+", 내용 : "+text+"</h1>";
+            });
+        });
+    </script>
+</body>
+</html>
